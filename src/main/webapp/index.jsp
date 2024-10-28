@@ -62,19 +62,19 @@
         <div class="col-md-4">
             <h2>Devops</h2>
             <p>DevOps is the combination of cultural philosophies, practices, and tools that increases an organization's ability to deliver applications and services at high velocity: evolving and improving products at a faster pace than organizations using traditional software development and infrastructure management processes.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-default" href="https://docs.docker.com/guides/" role="button">View details &raquo;</a></p>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4">
             <h2>Jenkins</h2>
             <p>Jenkins is a free and open source automation server. Jenkins helps to automate the non-human part of the software development process, with continuous integration and facilitating technical aspects of continuous delivery</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-default" href="https://www.jenkins.io/doc/#about-this-documentation" role="button">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">
             <h2>Maven</h2>
             <p>Maven is a build automation tool used primarily for Java projects. Maven can also be used to build and manage projects written in C#, Ruby, Scala, and other languages.</p>
-            <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+            <p><a class="btn btn-default" href="https://maven.apache.org/guides/index.html#getting-started-with-maven" role="button">View details &raquo;</a></p>
         </div>
 <!--         <div class="col-md-4">
             <h2>Docker</h2>
