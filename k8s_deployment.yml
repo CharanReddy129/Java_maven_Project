@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: webapp_deployment
+  name: webapp-deployment
   labels:
     app: webapp
 spec:
@@ -11,12 +11,12 @@ spec:
       app: webapp
   template:
     metadata:
-      name: webapp_pod
+      name: webapp-pod
       labels:
         app: webapp
     spec:
       containers:
-        - name: webapp_con  
+        - name: webapp-con  
           image: charanreddy12/webapp:latest
           ports:
             - containerPort: 8080
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: webapp_service
+  name: webapp-service
   labels:
     app: webapp
 spec:
