@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: webapp-con  
-          image: charanreddy12/java_maven:imageTag
+          image: charanreddy12/java_maven:2
           ports:
             - containerPort: 8080
