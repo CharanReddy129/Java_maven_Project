@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: webapp-con  
-          image: charanreddy12/webapp:latest
+          image: charanreddy12/webapp:imageTag
           ports:
             - containerPort: 8080
