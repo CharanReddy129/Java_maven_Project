@@ -10,7 +10,7 @@ spec:
     path: k8s_manifests
     targetRevision: main
   destination:
-    server: https://https://kubernetes.default.svc
+    server: https://kubernetes.default.svc
     namespace: maven 
   syncPolicy:
     automated:
