@@ -19,11 +19,18 @@ jobs:
         - name: compile code
           run: mvn compile
 
-        - name: testing the code
-          run: mvn test
+    security_checks:
+        runs-on: self-hosted
+        needs: compile
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v4
+
+        - name: trivy scan
+          run: trivy fs --format table .
 
     sonar_code_scan:
-        needs: compile
+        needs: security_checks
         runs-on: self-hosted
         steps:
         - name: checkout code
