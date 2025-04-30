@@ -76,7 +76,7 @@ jobs:
         - name: building artifact
           run: mvn clean package
 
-    build_and_push_artifact_and_image:
+    build_artifact:
         needs: sonar_scan
         runs-on: self-hosted
         steps:
@@ -92,11 +92,27 @@ jobs:
         
         - name: building artifact
           run: mvn clean package
-          working-directory: ${{ github.workspace }}
+        #   working-directory: ${{ github.workspace }}
 
-        - name: Check for WAR file
-          run: ls -lh target/
+        - name: upload artifact
+          uses: actions/upload-artifact@v4
+          with:
+            name: web-app
+            path: ./target/*.war
 
+    build_and_push_image:
+        needs: build_artifact
+        runs-on: self-hosted
+        steps:
+        - name: checkout code
+          uses: actions/checkout@v4
+
+        - name: download artifact
+          uses: actions/download-artifact@v4
+          with:
+            name: web-app
+            path: target/
+        
         - name: docker login
           uses: docker/login-action@v3
           with: 
