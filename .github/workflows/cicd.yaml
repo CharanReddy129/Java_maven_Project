@@ -76,7 +76,7 @@ jobs:
         - name: building artifact
           run: mvn clean package
 
-    build_artifact:
+    build_and_push_artifact_and_image:
         needs: sonar_scan
         runs-on: self-hosted
         steps:
@@ -92,22 +92,6 @@ jobs:
         
         - name: building artifact
           run: mvn clean package
-
-        - name: uploading artifact
-          uses: actions/upload-artifact@v4
-          with:
-            name: war-artifact
-            path: ./target/*.war
-
-    build_push_docker_image:
-        needs: build_artifact
-        runs-on: self-hosted
-        steps:
-        - name: download artifact
-          uses: actions/download-artifact@v4
-          with:
-            name: war-artifact
-            path: target 
 
         - name: docker login
           uses: docker/login-action@v3
@@ -127,4 +111,6 @@ jobs:
             push: true
             tags: ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
           env:
-            IMAGE_NAME: webapp-actions
+            IMAGE_NAME: webapp-actions 
+
+        
