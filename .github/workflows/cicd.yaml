@@ -35,7 +35,7 @@ jobs:
             sudo apt-get install trivy -y
  
         - name: trivy scan
-          run: trivy fs --format table -o 
+          run: trivy fs --format table -o output.json .
 
 
     sonar_code_scan:
