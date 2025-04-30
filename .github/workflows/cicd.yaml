@@ -92,6 +92,10 @@ jobs:
         
         - name: building artifact
           run: mvn clean package
+          working-directory: ${{ github.workspace }}
+
+        - name: Check for WAR file
+          run: ls -lh target/
 
         - name: docker login
           uses: docker/login-action@v3
@@ -108,6 +112,7 @@ jobs:
         - name: Build and push
           uses: docker/build-push-action@v6
           with:
+            context: .
             push: true
             tags: ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
           env:
