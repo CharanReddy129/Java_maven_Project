@@ -1,6 +1,9 @@
 name: implementing cicd pipeline
 
-on: push
+on: 
+    push:
+        paths-ignore: 
+            - ./k8s_manifests/*
     # workflow_dispatch:
 
 jobs:
