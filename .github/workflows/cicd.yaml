@@ -103,6 +103,10 @@ jobs:
     build_and_push_image:
         needs: build_artifact
         runs-on: self-hosted
+        env:
+            IMAGE_NAME: java_maven
+            DOCKER_USERNAME: ${{ vars.DOCKER_USERNAME }}
+            IMAGE_TAG: ${{ github.run_number }}
         steps:
         - name: checkout code
           uses: actions/checkout@v4
@@ -131,7 +135,39 @@ jobs:
             context: .
             push: true
             tags: ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
-          env:
-            IMAGE_NAME: webapp-actions 
 
+        - name: changing the image name
+          run: ./update_tag.sh
+           
+
+    # deploy_to_eks:
+    #     needs: build_and_push_image
+    #     runs-on: self-hosted
+    #     steps:
+    #     - name: checkout code
+    #       uses: actions/checkout@v4
+    #     - name: install aws cli
+    #       run: |
+    #         curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
+    #         unzip awscli-bundle.zip
+    #         sudo ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
+
+    #     - name: aws configure
+    #       uses: aws-actions/configure-aws-credentials@v4
+    #       with:
+    #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+    #         aws-secret-access-key-id: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #         aws-region: ap-south-1
         
+    #     - name: kubectl setup
+    #       uses: azure/setup-kubectl@v4
+    #       with:
+    #         version: latest
+
+    #     - name: kubectl configure
+    #       run: |
+    #         mkdir -p $HOME/.kube
+    #         echo "${{ secrets.EKS_KUBECONFIG }}" >> $HOME/.kube/config
+
+    #     - name: deploy to eks
+    #       run: kubectl apply -f ./k8s_manifests/.
