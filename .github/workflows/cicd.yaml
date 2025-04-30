@@ -1,7 +1,7 @@
 name: implementing cicd pipeline
 
-on: 
-    workflow_dispatch:
+on: push
+    # workflow_dispatch:
 
 jobs:
     compile:
@@ -10,10 +10,10 @@ jobs:
         - name: checkout code
           uses: actions/checkout@v4
         
-        - name: setup JDK 21.0.6
+        - name: setup JDK 17
           uses: actions/setup-java@v4
           with:
-            java-version: '21.0.6'
+            java-version: '17'
             distribution: 'temurin'
             cache: 'maven'
         - name: compile code
@@ -45,10 +45,10 @@ jobs:
         - name: checkout code
           uses: actions/checkout@v4
 
-        - name: setup JDK 21.0.6
+        - name: setup JDK 17
           uses: actions/setup-java@v4
           with:
-            java-version: '21.0.6'
+            java-version: '17'
             distribution: 'temurin'
             cache: 'maven'
 
