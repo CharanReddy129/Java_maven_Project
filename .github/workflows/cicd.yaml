@@ -18,3 +18,16 @@ jobs:
             cache: 'maven'
         - name: compile code
           run: mvn compile
+
+        - name: testing the code
+          run: mvn test
+
+    sonar_code_scan:
+        needs: compile
+        runs-on: ubuntu-latest
+        steps:
+        - name: sonar scan
+          uses: SonarSource/sonarqube-scan-action@v5.1.0
+          env:
+            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+            SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
