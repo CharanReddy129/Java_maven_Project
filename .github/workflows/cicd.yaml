@@ -137,7 +137,9 @@ jobs:
             tags: ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:${{ github.run_number }}
 
         - name: changing the image name
-          run: ./update_tag.sh
+          run: |
+            sudo chmod +x ./update_tag.sh
+            ./update_tag.sh
            
 
     # deploy_to_eks:
